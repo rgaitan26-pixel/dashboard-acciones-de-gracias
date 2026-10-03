@@ -34,7 +34,7 @@ else:
 # ----------------------------------------------------------------------------
 # Filtros: columnas "año" y "Responsable"
 # ----------------------------------------------------------------------------
-faltantes = [c for c in ["año", "Responsable"] if c not in df.columns]
+faltantes = [c for c in ["año", "Responsables"] if c not in df.columns]
 if faltantes:
     st.error(f"No encontré estas columnas en el archivo: {faltantes}")
     st.write("Columnas disponibles:", list(df.columns))
@@ -48,7 +48,7 @@ sel_anios = st.sidebar.multiselect("año", anios, default=anios)
 responsables = sorted(df["Responsables"].dropna().unique(), key=str)
 sel_resp = st.sidebar.multiselect("Responsables", responsables, default=responsables)
 
-df = df[df["año"].isin(sel_anios) & df["Responsable"].isin(sel_resp)]
+df = df[df["año"].isin(sel_anios) & df["Responsables"].isin(sel_resp)]
 
 st.title("Análisis de servicios")
 
