@@ -45,8 +45,8 @@ st.sidebar.header("Filtros")
 anios = sorted(df["año"].dropna().unique(), key=str)
 sel_anios = st.sidebar.multiselect("año", anios, default=anios)
 
-responsables = sorted(df["Responsable"].dropna().unique(), key=str)
-sel_resp = st.sidebar.multiselect("Responsable", responsables, default=responsables)
+responsables = sorted(df["Responsables"].dropna().unique(), key=str)
+sel_resp = st.sidebar.multiselect("Responsables", responsables, default=responsables)
 
 df = df[df["año"].isin(sel_anios) & df["Responsable"].isin(sel_resp)]
 
