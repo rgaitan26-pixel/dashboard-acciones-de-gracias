@@ -32,7 +32,8 @@ else:
     st.stop()
 
 # ----------------------------------------------------------------------------
-# Filtros: columnas "año" y "Responsable"
+# Filtros: columnas "año" y "Responsables"
+# Sin selección = todas las opciones (no se filtra). Al elegir algunas, se filtra.
 # ----------------------------------------------------------------------------
 faltantes = [c for c in ["año", "Responsables"] if c not in df.columns]
 if faltantes:
@@ -43,12 +44,15 @@ if faltantes:
 st.sidebar.header("Filtros")
 
 anios = sorted(df["año"].dropna().unique(), key=str)
-sel_anios = st.sidebar.multiselect("año", anios, default=anios)
+sel_anios = st.sidebar.multiselect("año", anios, placeholder="Todos")
 
 responsables = sorted(df["Responsables"].dropna().unique(), key=str)
-sel_resp = st.sidebar.multiselect("Responsables", responsables, default=responsables)
+sel_resp = st.sidebar.multiselect("Responsables", responsables, placeholder="Todos")
 
-df = df[df["año"].isin(sel_anios) & df["Responsables"].isin(sel_resp)]
+if sel_anios:
+    df = df[df["año"].isin(sel_anios)]
+if sel_resp:
+    df = df[df["Responsables"].isin(sel_resp)]
 
 st.title("Análisis de servicios")
 
