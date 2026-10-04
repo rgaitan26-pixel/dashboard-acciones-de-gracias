@@ -27,7 +27,7 @@ if subido is not None:
 elif Path(ARCHIVO).exists():
     df = cargar(ARCHIVO)
 else:
-    st.title("Análisis de servicios")
+    st.title("📊 Análisis de servicios")
     st.info(f"Sube el Excel en la barra lateral o coloca `{ARCHIVO}` junto a `app.py`.")
     st.stop()
 
